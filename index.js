@@ -86,7 +86,7 @@ const floorMesh = (() => {
       vec3 p = vec3(position.x, position.y + height, position.z);
       gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
       vPosition = position;
-      vPosition.z += 1.;
+      // vPosition.z += 1.;
       vTypex = typex;
       vTypez = typez;
       vDepth = gl_Position.z/gl_Position.w / 10.;
