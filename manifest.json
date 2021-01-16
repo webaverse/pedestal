@@ -1,6 +1,6 @@
 {
-  "name": "party",
-  "description": "Party XRPackage",
+  "name": "floor",
+  "description": "Floor XRPackage",
   "xr_type": "webxr-site@0.0.1",
   "start_url": "index.js"
 }
