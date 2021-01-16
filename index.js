@@ -30,7 +30,7 @@ const floorMesh = (() => {
   for (let x = -numTiles; x <= numTiles; x++) {
     for (let z = -numTiles; z <= numTiles; z++) {
       const newPlaneBufferGeometry = planeBufferGeometry.clone()
-        .applyMatrix4(localMatrix.makeTranslation(x, 0, z));
+        .applyMatrix4(localMatrix.makeTranslation(x - 0.5, 0, z - 0.5));
       positions.set(newPlaneBufferGeometry.attributes.position.array, i * newPlaneBufferGeometry.attributes.position.array.length);
       for (let j = 0; j < newPlaneBufferGeometry.attributes.position.array.length/3; j++) {
         localVector.set(x, 0, z).toArray(centers, i*newPlaneBufferGeometry.attributes.position.array.length + j*3);
@@ -59,6 +59,7 @@ const floorMesh = (() => {
   geometry.setAttribute('center', new THREE.BufferAttribute(centers, 3));
   geometry.setAttribute('typex', new THREE.BufferAttribute(typesx, 1));
   geometry.setAttribute('typez', new THREE.BufferAttribute(typesz, 1));
+  geometry.setAttribute('typez', new THREE.BufferAttribute(typesz, 1));
   /* const geometry = new THREE.PlaneBufferGeometry(300, 300, 300, 300)
     .applyMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0, 1)))); */
   const floorVsh = `
@@ -84,7 +85,8 @@ const floorMesh = (() => {
       // height = 0.0;
       vec3 p = vec3(position.x, position.y + height, position.z);
       gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
-      vPosition = position + vec3(0.5, 0.0, 0.5);
+      vPosition = position;
+      vPosition.z += 1.;
       vTypex = typex;
       vTypez = typez;
       vDepth = gl_Position.z/gl_Position.w / 10.;
@@ -161,7 +163,7 @@ const floorMesh = (() => {
       },
       uSelectedParcel: {
         type: 'v4',
-        value: new THREE.Vector4(-8, -8, 8, 8),
+        value: new THREE.Vector4(-2, -2, 2, 2),
       },
       uSelectedColor: {
         type: 'c',
@@ -182,7 +184,7 @@ const floorMesh = (() => {
   // mesh.receiveShadow = true;
   return mesh;
 })();
-floorMesh.position.set(8, -0.1, 8);
+// floorMesh.position.set(8, -0.1, 8);
 app.object.add(floorMesh);
 
 function animate(timestamp, frame, referenceSpace) {
