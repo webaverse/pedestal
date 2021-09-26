@@ -10,6 +10,7 @@ const localMatrix = new THREE.Matrix4();
 
 export default () => {
   const app = useApp();
+  const physics = usePhysics();
 
   const physicsId = physics.addBoxGeometry(new THREE.Vector3(0, -1, 0), new THREE.Quaternion(), new THREE.Vector3(1000, 1, 1000), false);
 
