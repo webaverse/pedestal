@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 // import {renderer, camera, runtime, world, universe, physics, ui, rig, app, appManager, popovers} from 'app';
 import metaversefile from 'metaversefile';
-const {useApp, usePhysics} = metaversefile;
+const {useApp, usePhysics, useCleanup} = metaversefile;
 
 const localVector = new THREE.Vector3();
 const localMatrix = new THREE.Matrix4();
