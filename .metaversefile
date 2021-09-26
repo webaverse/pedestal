@@ -1,6 +1,4 @@
 {
-  "name": "pedestal",
-  "description": "Pedestal XRPackage",
-  "xr_type": "webxr-site@0.0.1",
+
   "start_url": "index.js"
 }
