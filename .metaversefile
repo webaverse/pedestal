@@ -1,4 +1,5 @@
 {
-
+  "name": "padestal",
+  "description": "padestal",
   "start_url": "index.js"
 }
